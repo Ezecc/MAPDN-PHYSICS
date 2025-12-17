@@ -332,7 +332,7 @@ For more details of this environment, users can check the [API Docs](https://git
 
 <br />
 
-## Build Up Networks
+## Build Up Your Own Power Networks
 
 For building up your own networks, we provide an open-source codebase to produce the above scenarios in this [Repository](https://github.com/xuwkk/gen_pandapower_pv).
 
