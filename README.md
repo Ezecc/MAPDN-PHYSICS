@@ -13,6 +13,8 @@
 | :warning:  Update |
 |:-----------------------------------------|
 |15/03/24: We fixed a bug in assigning p and q of PV to the nodes equipped with an agent. Thanks to Yang Zhang, a PhD student from Department of Automation, Shanghai Jiao Tong University, who found this bug and assisted us in fixing it.|
+|:-----------------------------------------|
+|17/12/2025: We've uploaded the large-size dataset that drives our environment to Hugging Face Platform, which could be more friendly for those people who would like to download dataset directly on remote servers. All download links of data have been updated. The download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip, while the download link for `traditional_control_data.zip`is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip.|
 
 # Multi-Agent Reinforcement Learning for Active Voltage Control on Power Distribution Networks (MAPDN)
 
@@ -96,8 +98,8 @@ where $l_{v}(\cdot)$ is a voltage barrier function that measures whether the vol
 <br />
 
 ## Downloading the Dataset
-
-1. Download the data from the [link](https://drive.google.com/file/d/1-GGPBSolVjX1HseJVblNY3KoTqfblmLh/view?usp=sharing).
+The download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip, while the download link for `traditional_control_data.zip`is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip.
+1. Download the data from the [link](https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip).
 2. Unzip the zip file and you can see the following 3 folders:
 
     * `case33_3min_final`
@@ -309,7 +311,7 @@ We show the basic settings of all scenarios provided in this repository.
 
 ### Downloading Date
 
-1. Download the data from the [LINK](https://drive.google.com/file/d/1-Kv6kT4IefvhWGWNcwJPOW-lWOKmYFVo/view?usp=sharing).
+1. Download the data from the [LINK](https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip).
 2. Extract the case files and move them to the directory `[Your own parent path]/MAPDN/traditional_control`.
 
 ### Running
