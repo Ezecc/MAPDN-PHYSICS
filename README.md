@@ -13,8 +13,7 @@
 | :warning:  Update |
 |:-----------------------------------------|
 |15/03/24: We fixed a bug in assigning p and q of PV to the nodes equipped with an agent. Thanks to Yang Zhang, a PhD student from Department of Automation, Shanghai Jiao Tong University, who found this bug and assisted us in fixing it.|
-|:-----------------------------------------|
-|17/12/2025: We've uploaded the large-size dataset that drives our environment to Hugging Face Platform, which could be more friendly for those people who would like to download dataset directly on remote servers. All download links of data have been updated. The download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip, while the download link for `traditional_control_data.zip`is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip.|
+|17/12/2025: We've uploaded the large-size dataset that drives our environment to Hugging Face Platform, which could be more friendly for those people who would like to download dataset directly on remote servers. All download links of data have been updated: (1) the download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip; (2) the download link for `traditional_control_data.zip`is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip.|
 
 # Multi-Agent Reinforcement Learning for Active Voltage Control on Power Distribution Networks (MAPDN)
 
