@@ -97,7 +97,6 @@ where $l_{v}(\cdot)$ is a voltage barrier function that measures whether the vol
 <br />
 
 ## Downloading the Dataset
-The download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip, while the download link for `traditional_control_data.zip`is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip.
 1. Download the data from the [link](https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip).
 2. Unzip the zip file and you can see the following 3 folders:
 
