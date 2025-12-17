@@ -79,7 +79,7 @@ dependencies:
     - absl-py==0.10.0
     - astor==0.8.1
     - astunparse==1.6.3
-    - atari-py
+    # - atari-py
     - backcall==0.2.0
     - cachetools==4.1.1
     - cloudpickle==1.2.2
@@ -160,7 +160,7 @@ dependencies:
     - six==1.15.0
     - smmap==4.0.0
     - soundfile==0.10.3.post1
-    - stable-baselines==2.10.1
+    # - stable-baselines==2.10.1
     - tenacity==8.0.1
     - tensorboard==2.1.1
     - tensorboard-data-server==0.6.0
