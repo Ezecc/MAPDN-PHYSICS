@@ -12,7 +12,7 @@
 
 | :warning:  Update |
 |:-----------------------------------------|
-| **18/12/2025**: We've updated the dependencies for this environment. Now we've applied Python 3.10. Note that PyTorch has been updated to 2.9.0 and Pandapower has been updated to 3.3.0. The CUDA version we tested is 12.8. For windows users, if you'd like to run experiments in GPUs, you require to install PyTorch with the appropriate CUDA version by yourself. |
+| **18/12/2025**: We've updated the dependencies for this environment. Now we've applied Python 3.10. Note that PyTorch has been updated to 2.9.0 and Pandapower has been updated to 3.3.0. The CUDA version we tested is 12.8. In the `environment.yml`, we only provide the general version of PyTorch 2.9 with no support for GPU. If you'd like to use GPU accelerated PyTorch, you need to manually install PyTorch with the appropriate version of CUDA, e.g., `pip install torch==2.9.0+cu128 --index-url https://download.pytorch.org/whl/cu128`.|
 | **17/12/2025**: We've uploaded the large-size dataset that drives our environment to Hugging Face Platform, which could be more friendly for those people who would like to download dataset directly on remote servers. All download links of data have been updated: (1) the download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip; (2) the download link for `traditional_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip. |
 | **15/03/2024**: We fixed a bug in assigning p and q of PV to the nodes equipped with an agent. Thanks to Yang Zhang, a PhD student from Department of Automation, Shanghai Jiao Tong University, who found this bug and assisted us in fixing it. |
 
@@ -91,7 +91,11 @@ where $l_{v}(\cdot)$ is a voltage barrier function that measures whether the vol
    ```bash
    conda env create -f environment_win.yml
    ```
-4. Activate the installed virtual environment using the following command.
+4. If you'd like to use GPU accelerated PyTorch, you need to manually install PyTorch with the appropriate version of CUDA, e.g., 
+    ```bash
+    pip install torch==2.9.0+cu128 --index-url https://download.pytorch.org/whl/cu128
+    ```
+5. Activate the installed virtual environment using the following command.
     ```bash
     conda activate mapdn
     ```
