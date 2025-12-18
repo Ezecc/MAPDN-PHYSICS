@@ -6,15 +6,16 @@
 </p>
 
 
-| :exclamation:  Warning |
-|:-----------------------------------------|
-|The Link for downloading data was expired, and it has been fixed! We are sorry for the inconvenience incurred.|
+<!-- | :exclamation:  Warning |
+|-----------------------------------------|
+|The Link for downloading data was expired, and it has been fixed! We are sorry for the inconvenience incurred.| -->
 
 | :warning:  Update |
 |:-----------------------------------------|
-|15/03/24: We fixed a bug in assigning p and q of PV to the nodes equipped with an agent. Thanks to Yang Zhang, a PhD student from Department of Automation, Shanghai Jiao Tong University, who found this bug and assisted us in fixing it.|
-|17/12/2025: We've uploaded the large-size dataset that drives our environment to Hugging Face Platform, which could be more friendly for those people who would like to download dataset directly on remote servers. All download links of data have been updated: (1) the download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip; (2) the download link for `traditional_control_data.zip`is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip.|
-|18/12/2025: We've updated the dependencies for this environment. Now we've applied Python 3.10. Note that PyTorch has been updated to 2.9.0 and Pandapower has been updated to 3.3.0. The CUDA version we tested is 12.8. For windows users, if you'd like to run experiments in GPUs, you require to install PyTorch with the appropriate CUDA version by yourself.|
+| **18/12/2025**: We've updated the dependencies for this environment. Now we've applied Python 3.10. Note that PyTorch has been updated to 2.9.0 and Pandapower has been updated to 3.3.0. The CUDA version we tested is 12.8. For windows users, if you'd like to run experiments in GPUs, you require to install PyTorch with the appropriate CUDA version by yourself. |
+| **17/12/2025**: We've uploaded the large-size dataset that drives our environment to Hugging Face Platform, which could be more friendly for those people who would like to download dataset directly on remote servers. All download links of data have been updated: (1) the download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip; (2) the download link for `traditional_control_data.zip`is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip. |
+| **15/03/2024**: We fixed a bug in assigning p and q of PV to the nodes equipped with an agent. Thanks to Yang Zhang, a PhD student from Department of Automation, Shanghai Jiao Tong University, who found this bug and assisted us in fixing it. |
+
 
 # Multi-Agent Reinforcement Learning for Active Voltage Control on Power Distribution Networks (MAPDN)
 
