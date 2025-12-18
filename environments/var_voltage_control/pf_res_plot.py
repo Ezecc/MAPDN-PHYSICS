@@ -79,7 +79,7 @@ def pf_res_plotly(net, cmap="Jet", use_line_geodata=None, on_map=False, projecti
         **figure** (graph_objs._figure.Figure) figure object
 
     """
-    version_check()
+    # version_check()
     if 'res_bus' not in net or net.get('res_bus').shape[0] == 0:
         logger.warning('There are no Power Flow results. A Newton-Raphson power flow will be executed.')
         runpp(net)

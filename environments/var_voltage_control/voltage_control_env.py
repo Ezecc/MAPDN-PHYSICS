@@ -236,12 +236,12 @@ class VoltageControl(MultiAgentEnv):
         """
         clusters = self._get_clusters_info()
         for i in range(len(self.powergrid.sgen)):
-            clusters[f"sgen{i}"][0].loc[clusters[f"sgen{i}"][4]]["p_mw"] += clusters[f"sgen{i}"][2]
-            clusters[f"sgen{i}"][0].loc[clusters[f"sgen{i}"][4]]["q_mvar"] += clusters[f"sgen{i}"][3]
+            clusters[f"sgen{i}"][0].loc[clusters[f"sgen{i}"][4], ["p_mw"]] += clusters[f"sgen{i}"][2]
+            clusters[f"sgen{i}"][0].loc[clusters[f"sgen{i}"][4], ["q_mvar"]] += clusters[f"sgen{i}"][3]
             for j in range(len(self.powergrid.sgen)):
                 if i != j and clusters[f"sgen{j}"][1] == clusters[f"sgen{i}"][1]:
-                    clusters[f"sgen{j}"][0].loc[clusters[f"sgen{i}"][4]]["p_mw"] += clusters[f"sgen{i}"][2]
-                    clusters[f"sgen{j}"][0].loc[clusters[f"sgen{i}"][4]]["q_mvar"] += clusters[f"sgen{i}"][3]            
+                    clusters[f"sgen{j}"][0].loc[clusters[f"sgen{i}"][4], ["p_mw"]] += clusters[f"sgen{i}"][2]
+                    clusters[f"sgen{j}"][0].loc[clusters[f"sgen{i}"][4], ["q_mvar"]] += clusters[f"sgen{i}"][3]            
         if self.args.mode == "distributed":
             obs_sgen_dict = dict()
             sgen_list = list()
@@ -533,11 +533,11 @@ class VoltageControl(MultiAgentEnv):
                 sgen_bus = self.powergrid.sgen["bus"][i]
                 pv = self.powergrid.sgen["p_mw"][i]
                 q = self.powergrid.sgen["q_mvar"][i]
-                zone_res_buses = self.powergrid.res_bus.sort_index().loc[self.powergrid.bus["zone"]==zone]
+                zone_res_buses = self.powergrid.res_bus.sort_index().loc[self.powergrid.bus["zone"] == zone]
                 clusters[f"sgen{i}"] = (zone_res_buses, zone, pv, q, sgen_bus)
         elif self.args.mode == "decentralised":
             for i in range(self.n_agents):
-                zone_res_buses = self.powergrid.res_bus.sort_index().loc[self.powergrid.bus["zone"]==f"zone{i+1}"]
+                zone_res_buses = self.powergrid.res_bus.sort_index().loc[self.powergrid.bus["zone"] == f"zone{i+1}"]
                 sgen_res_buses = self.powergrid.sgen["bus"].loc[self.powergrid.sgen["name"] == f"zone{i+1}"]
                 pv = self.powergrid.sgen["p_mw"].loc[self.powergrid.sgen["name"] == f"zone{i+1}"]
                 q = self.powergrid.sgen["q_mvar"].loc[self.powergrid.sgen["name"] == f"zone{i+1}"]

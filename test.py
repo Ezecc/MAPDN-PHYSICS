@@ -74,7 +74,7 @@ alg_config_dict["cuda"] = False
 args = convert(alg_config_dict)
 
 # define the save path
-if argv.save_path[-1] is "/":
+if argv.save_path[-1] == "/":
     save_path = argv.save_path
 else:
     save_path = argv.save_path+"/"

@@ -5,7 +5,9 @@ import math
 import six
 from gym import error
 
-
+# from pyvirtualdisplay import Display
+# display = Display(visible=0, size=(1400, 900))
+# display.start()
 
 try:
     import pyglet

@@ -302,7 +302,7 @@ class Model(nn.Module):
         stat.update(stat_test)
 
     def unpack_data(self, batch):
-        reward = th.tensor(batch.reward, dtype=th.float).to(self.device)
+        reward = th.tensor(np.array(batch.reward), dtype=th.float).to(self.device)
         last_step = th.tensor(batch.last_step, dtype=th.float).to(self.device).contiguous().view(-1, 1)
         done = th.tensor(batch.done, dtype=th.float).to(self.device).contiguous().view(-1, 1)
         action = th.tensor(np.concatenate(batch.action, axis=0), dtype=th.float).to(self.device)
