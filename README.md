@@ -6,6 +6,8 @@
 </p>
 
 
+# Multi-Agent Reinforcement Learning for Active Voltage Control on Power Distribution Networks (MAPDN)
+
 <!-- | :exclamation:  Warning |
 |-----------------------------------------|
 |The Link for downloading data was expired, and it has been fixed! We are sorry for the inconvenience incurred.| -->
@@ -16,8 +18,6 @@
 | **17/12/2025**: We've uploaded the large-size dataset that drives our environment to Hugging Face Platform, which could be more friendly for those people who would like to download dataset directly on remote servers. All download links of data have been updated: (1) the download link for `voltage_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/voltage_control_data.zip; (2) the download link for `traditional_control_data.zip` is: https://huggingface.co/datasets/hsvgbkhgbv/Multi-Agent-Power-Distribution-Networks/resolve/main/traditional_control_data.zip. |
 | **15/03/2024**: We fixed a bug in assigning p and q of PV to the nodes equipped with an agent. Thanks to Yang Zhang, a PhD student from Department of Automation, Shanghai Jiao Tong University, who found this bug and assisted us in fixing it. |
 
-
-# Multi-Agent Reinforcement Learning for Active Voltage Control on Power Distribution Networks (MAPDN)
 
 This is the implementation of the paper [Multi-Agent Reinforcement Learning for Active Voltage Control on Power Distribution Networks](https://arxiv.org/abs/2110.14300).
 
@@ -74,8 +74,10 @@ In this section, we give a brief introduction of this task so that the users can
 </figure>
 
 **Reward:** The reward function is shown as follows:
+
 $$\mathit{r} = - \frac{1}{|V|} \sum_{i \in V} l_{v}(v_{i}) - \alpha \cdot l_{q}(\mathbf{q}^{\scriptscriptstyle PV}),$$
-where $l_{v}(\cdot)$ is a voltage barrier function that measures whether the voltage of a bus is within the safety range; $l_{q}(\mathbf{q}^{\scriptscriptstyle PV})=\frac{1}{|\mathcal{I}|}||\mathbf{q}^{\scriptscriptstyle PV}||\_{1}$ that can be seen as a simple approximation of power loss, where $\mathbf{q}^{\scriptscriptstyle PV}$ is a vector of agents' reactive power, $\mathcal{I}$ is a set of agents and $\alpha$ is a multiplier to adjust the balance between voltage control and the generation of reactive power. In this work, we investigate different forms of $l_{v}(\cdot)$. Literally, the aim of this reward function is controlling the voltage, meanwhile minimising the power loss that is correlated with the economic loss.
+
+where $l_{v}(\cdot)$ is a voltage barrier function that measures whether the voltage of a bus is within the safety range; $l_{q}(\mathbf{q}^{\scriptscriptstyle PV})=\frac{1}{|\mathcal{I}|} \Vert \mathbf{q}^{\scriptscriptstyle PV} \Vert_{1}$ that can be seen as a simple approximation of power loss, where $\mathbf{q}^{\scriptscriptstyle PV}$ is a vector of agents' reactive power, $\mathcal{I}$ is a set of agents and $\alpha$ is a multiplier to adjust the balance between voltage control and the generation of reactive power. In this work, we investigate different forms of $l_{v}(\cdot)$. Literally, the aim of this reward function is controlling the voltage, meanwhile minimising the power loss that is correlated with the economic loss.
 
 <br />
 
