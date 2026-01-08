@@ -235,14 +235,15 @@ class VoltageControl(MultiAgentEnv):
            each agent can only observe the state within the zone where it belongs
         """
         clusters = self._get_clusters_info()
-        for i in range(len(self.powergrid.sgen)):
-            clusters[f"sgen{i}"][0].loc[clusters[f"sgen{i}"][4], ["p_mw"]] += clusters[f"sgen{i}"][2]
-            clusters[f"sgen{i}"][0].loc[clusters[f"sgen{i}"][4], ["q_mvar"]] += clusters[f"sgen{i}"][3]
-            for j in range(len(self.powergrid.sgen)):
-                if i != j and clusters[f"sgen{j}"][1] == clusters[f"sgen{i}"][1]:
-                    clusters[f"sgen{j}"][0].loc[clusters[f"sgen{i}"][4], ["p_mw"]] += clusters[f"sgen{i}"][2]
-                    clusters[f"sgen{j}"][0].loc[clusters[f"sgen{i}"][4], ["q_mvar"]] += clusters[f"sgen{i}"][3]            
         if self.args.mode == "distributed":
+            # only build sgen-indexed clusters in distributed mode
+            for i in range(len(self.powergrid.sgen)):
+                clusters[f"sgen{i}"][0].loc[clusters[f"sgen{i}"][4], ["p_mw"]] += clusters[f"sgen{i}"][2]
+                clusters[f"sgen{i}"][0].loc[clusters[f"sgen{i}"][4], ["q_mvar"]] += clusters[f"sgen{i}"][3]
+                for j in range(len(self.powergrid.sgen)):
+                    if i != j and clusters[f"sgen{j}"][1] == clusters[f"sgen{i}"][1]:
+                        clusters[f"sgen{j}"][0].loc[clusters[f"sgen{i}"][4], ["p_mw"]] += clusters[f"sgen{i}"][2]
+                        clusters[f"sgen{j}"][0].loc[clusters[f"sgen{i}"][4], ["q_mvar"]] += clusters[f"sgen{i}"][3]
             obs_sgen_dict = dict()
             sgen_list = list()
             obs_len_list = list()
@@ -300,6 +301,8 @@ class VoltageControl(MultiAgentEnv):
             for obs_zone in zone_obs_list:
                 pad_obs_zone = np.concatenate( [obs_zone, np.zeros(obs_max_len - obs_zone.shape[0])], axis=0 )
                 agents_obs.append(pad_obs_zone)
+        else:
+            raise RuntimeError(f"Unsupported mode: {self.args.mode}")
         if self.history > 1:
             agents_obs_ = []
             for i, obs in enumerate(agents_obs):
