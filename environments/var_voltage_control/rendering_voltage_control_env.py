@@ -3,7 +3,10 @@ import sys
 import numpy as np
 import math
 import six
-from gym import error
+try:
+    from gymnasium import error
+except ImportError:
+    from gym import error
 
 # from pyvirtualdisplay import Display
 # display = Display(visible=0, size=(1400, 900))
@@ -125,7 +128,6 @@ class Viewer(object):
             f'The total power loss: \t{powerloss:.3f}',
             font_name="Times New Roman",
             font_size=24,
-            bold=True,
             x=10,
             y=self.height-15,
             anchor_x="left",

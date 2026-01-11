@@ -653,6 +653,7 @@ class VoltageControl(MultiAgentEnv):
         from .rendering_voltage_control_env import Viewer
         self.viewer = Viewer()
         self._rendering_initialized = True
+        self._geodata_initialized = False
 
     def render(self, mode="human"):
         if not self._rendering_initialized:
@@ -662,6 +663,19 @@ class VoltageControl(MultiAgentEnv):
     def res_pf_plot(self):
         if not os.path.exists("environments/var_voltage_control/plot_save"):
             os.mkdir("environments/var_voltage_control/plot_save")
+
+        # Initialize geodata once if needed (newer pandapower stores geo in bus['geo'] column)
+        if not self._geodata_initialized:
+            has_geodata = False
+            if 'geo' in self.powergrid.bus.columns and self.powergrid.bus['geo'].notna().any():
+                has_geodata = True
+            elif 'bus_geodata' in self.powergrid and len(self.powergrid.bus_geodata) > 0:
+                has_geodata = True
+            
+            if not has_geodata:
+                from pandapower.plotting.generic_geodata import create_generic_coordinates
+                create_generic_coordinates(self.powergrid, respect_switches=True, overwrite=True)
+            self._geodata_initialized = True
 
         fig = pf_res_plotly(self.powergrid, 
                             aspectratio=(1.0, 1.0), 

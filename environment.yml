@@ -1,4 +1,4 @@
-name: mapdn
+name: mapdn_py310
 channels:
   - conda-forge
 dependencies:

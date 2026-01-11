@@ -85,18 +85,29 @@ def pf_res_plotly(net, cmap="Jet", use_line_geodata=None, on_map=False, projecti
         runpp(net)
 
     # create geocoord if none are available
-    if 'line_geodata' not in net:
-        net.line_geodata = pd.DataFrame(columns=['coords'])
-    if 'bus_geodata' not in net:
-        net.bus_geodata = pd.DataFrame(columns=["x", "y"])
-    if len(net.line_geodata) == 0 and len(net.bus_geodata) == 0:
+    # In newer pandapower, geodata is stored in net.bus['geo'] column, not net.bus_geodata
+    needs_geodata = False
+    if 'geo' in net.bus.columns and net.bus['geo'].notna().any():
+        # New format: geodata in bus['geo'] column - already have it
+        needs_geodata = False
+    elif 'bus_geodata' in net and len(net.bus_geodata) > 0:
+        # Old format: geodata in bus_geodata table - already have it
+        needs_geodata = False
+    else:
+        needs_geodata = True
+    
+    if needs_geodata:
         logger.warning("No or insufficient geodata available --> Creating artificial coordinates." +
                        " This may take some time")
-        create_generic_coordinates(net, respect_switches=True)
+        create_generic_coordinates(net, respect_switches=True, overwrite=True)
         if on_map:
             logger.warning("Map plots not available with artificial coordinates and will be disabled!")
             on_map = False
+    
+    # Check for duplicates only if old-style geodata tables exist
     for geo_type in ["bus_geodata", "line_geodata"]:
+        if geo_type not in net or len(net[geo_type]) == 0:
+            continue
         dupl_geo_idx = pd.Series(net[geo_type].index)[pd.Series(
                 net[geo_type].index).duplicated()]
         if len(dupl_geo_idx):
@@ -131,9 +142,10 @@ def pf_res_plotly(net, cmap="Jet", use_line_geodata=None, on_map=False, projecti
     # if bus geodata is available, but no line geodata
     # if bus geodata is available, but no line geodata
     cmap_lines = 'jet' if cmap == 'Jet' else cmap
+    has_line_geodata = 'line_geodata' in net and len(net.line_geodata) > 0
     if use_line_geodata is None:
-        use_line_geodata = False if len(net.line_geodata) == 0 else True
-    elif use_line_geodata and len(net.line_geodata) == 0:
+        use_line_geodata = has_line_geodata
+    elif use_line_geodata and not has_line_geodata:
         logger.warning("No or insufficient line geodata available --> only bus geodata will be used.")
         use_line_geodata = False
     # hoverinfo which contains name and pf results
@@ -143,7 +155,7 @@ def pf_res_plotly(net, cmap="Jet", use_line_geodata=None, on_map=False, projecti
             'I_from = ' + net.res_line.i_from_ka.round(precision).astype(str) + ' kA' + '<br />' +
             'I_to = ' + net.res_line.i_to_ka.round(precision).astype(str) + ' kA' + '<br />').tolist()
     hoverinfo = pd.Series(index=net.line.index, data=hoverinfo)
-    line_traces = create_line_trace(net, use_line_geodata=use_line_geodata, respect_switches=True,
+    line_traces = create_line_trace(net, respect_switches=True,
                                     width=line_width,
                                     infofunc=hoverinfo,
                                     cmap=cmap_lines,
